@@ -1,0 +1,126 @@
+.icon.icon-inform {
+  background-image: url(../images/inform.png);
+  padding: 0;
+  padding-left: 15px;
+}
+.box.tabular.settings {
+  overflow: hidden;
+}
+
+.tabular.settings table.plugin_settings label {
+  margin-left: 0;
+  width: inherit;
+  font-weight: normal;
+  float: inherit;
+  text-align: inherit;
+}
+
+.rmp-settings-group td {
+  font-weight: bold;
+  background-color: #f3f3f3;
+  border-left: none !important;
+  border-right: none !important;
+}
+
+#settings .box {
+  padding: 0;
+  margin-bottom: 0;
+  background-color: inherit;
+  color: inherit;
+  line-height: inherit;
+  border-width: 0;
+  word-wrap: break-word;
+}
+
+table.plugin_settings {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+table.plugin_settings td {
+  border-bottom: 1px solid #ccc;
+  border-left: 1px solid #ccc;
+  padding: 10px;
+  vertical-align: top;
+}
+
+table.plugin_settings tr > td:first-child {
+  border-left-width: 0;
+  text-align: right;
+}
+table.plugin_settings tr > td:last-child td {
+  text-align: left;
+}
+table.plugin_settings tr > td:last-child {
+  text-align: left;
+}
+
+table.plugin_settings tbody:last-child tr:last-child > td {
+  border-bottom: none;
+}
+table.plugin_settings table {
+  border-collapse: collapse;
+}
+table.plugin_settings td td {
+  border: none;
+  text-align: left;
+  padding: 2px;
+}
+table.plugin_settings td td:first-child {
+  padding-left: 0;
+}
+table.plugin_settings td td:last-child {
+  padding-right: 0;
+}
+table.plugin_settings td tr:first-child td {
+  padding-top: 0;
+}
+table.plugin_settings td tr:last-child td {
+  padding-bottom: 0;
+}
+table.plugin_settings input, table.plugin_settings select {
+  box-sizing: border-box;
+}
+
+.rmp-fast-link {
+  margin-left: 5px;
+}
+
+input.main-form-button {
+  font-size: 16pt;
+}
+
+.rmp-settings-group {
+  background-color: #F3F3F3;
+}
+
+
+.rmp-form p {
+  margin: 15px 0;
+}
+.rmp-form p:first-child {
+  margin-top: 0;
+}
+.rmp-form p:last-child {
+  margin-bottom: 0;
+}
+.rmp-form p > label ,
+.rmp-form .sd-frm-labeled-div > label {
+  color: #888;
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.8em;
+}
+.rmp-form p.rmp-checkbox > label {
+  color: #333;
+  display: inline;
+}
+
+table.plugin_settings .acl-setting-used {
+  margin-bottom: 0;
+  margin-top: 10px;
+}
+table.plugin_settings .acl-setting-used li {
+  padding: 2px 0;
+  font-size: 0.8em;
+}

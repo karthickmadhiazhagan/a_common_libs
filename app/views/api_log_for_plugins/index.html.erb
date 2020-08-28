@@ -1,0 +1,49 @@
+<% content_for :header_tags do %>
+    <%= javascript_include_tag 'api_log_for_plugins.js', plugin: :a_common_libs %>
+<% end %>
+<div id="api_log_for_plugin">
+  <h2><%= l(:api_log_for_plugins_errors) %></h2>
+  <% if @api_logs.any? %>
+    <div style="padding-bottom: 15px;">
+      <%= label_tag :plugin_code, l(:acl_label_plugin_singular) %>
+      <br>
+      <%= select_tag :plugin_code, options_for_select(@plugin_codes, params[:plugin_code]), class: 'select2', data: {select2_width: '200px'}, include_blank: true %>
+    </div>
+    <table class="list">
+      <thead>
+        <tr>
+          <th class="checkbox hide-when-print">
+            <%= check_box_tag 'check_all', '', false, :class => 'toggle-selection',
+                              :title => "#{l(:button_check_all)}" %>
+          </th>
+          <th><%= l(:acl_label_plugin_singular) %></th>
+          <th><%= l(:acl_label_error_code) %></th>
+          <th><%= l(:field_description) %></th>
+          <th>controller</th>
+          <th>action</th>
+          <th>params</th>
+          <th><%= l(:field_login) %></th>
+          <th><%= l(:label_acl_date_time) %></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @api_logs.each do |al|  %>
+          <tr>
+            <td class="checkbox hide-when-print"><%= check_box_tag("ids[]", al.id, al.served, :id => nil, class: al.served ? 'served' : nil) %></td>
+            <td><%= al.plugin_code %></td>
+            <td><%= al.error_code %></td>
+            <td><%= al.description %></td>
+            <td><%= al.controller %></td>
+            <td><%= al.action %></td>
+            <td><%= al.params %></td>
+            <td><%= link_to_user al.user %></td>
+            <td><%= format_time(al.created_at) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+    <span class="pagination"><%= pagination_links_full @api_logs_pages, @api_logs_count %></span>
+  <% else %>
+    <p class="nodata"><%= l(:label_no_data) %></p>
+  <% end %>
+</div>

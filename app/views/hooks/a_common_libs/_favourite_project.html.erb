@@ -1,0 +1,6 @@
+<%= labelled_fields_for :pref, @user.pref do |pref_fields| %>
+  <p>
+    <%= pref_fields.select(:favourite_project_id,
+                           '<option value=""></option>'.html_safe + project_tree_options_for_select(@user.memberships.collect(&:project).compact.select(&:active?).uniq, selected: @user.new_record? ? nil : @user.favourite_project)) %>
+  </p>
+<% end %>

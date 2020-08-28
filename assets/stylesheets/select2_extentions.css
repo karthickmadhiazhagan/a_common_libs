@@ -1,0 +1,15 @@
+.select2-instruction--hide {
+  display: none;
+}
+.select2-instruction {
+  text-align: center;
+  background-color: #F3EDD1;
+  border: 1px solid #eadbbc;
+  color: #A6750C;
+  border-radius: 2px;
+  padding: 2px;
+  margin: 0 5px 5px 5px;
+}
+.select2-instruction:first-child {
+  margin-top: 5px;
+}

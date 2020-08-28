@@ -1,0 +1,43 @@
+<% if custom_field.format.ajax_supported %>
+  <p>
+    <%= form.check_box :ajaxable %>
+  </p>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(document.body).on('change', '#custom_field_ajaxable', function() {
+        if (this.checked) {
+          var was_val = $('#custom_field_edit_tag_style').val();
+          $('#custom_field_edit_tag_style option[value!="select2"]').hide();
+          $('#custom_field_edit_tag_style').val('select2').attr('data-was', was_val);
+        } else {
+          $('#custom_field_edit_tag_style option').show();
+          var was_val = $('#custom_field_edit_tag_style').attr('data-was');
+          if (was_val || was_val == '') {
+            $('#custom_field_edit_tag_style').val(was_val);
+          }
+        }
+      });
+
+      $('#custom_field_ajaxable').trigger('change');
+    });
+  </script>
+<% end %>
+
+<% if custom_field.format.multiple_supported %>
+  <p<%= " style='#{custom_field.multiple ? nil : 'display:none;'}'".html_safe %>>
+    <%= form.check_box :acl_trim_multiple, disabled: !custom_field.multiple %>
+  </p>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(document.body).on('change', '#custom_field_multiple', function() {
+        if (this.checked) {
+          $('#custom_field_acl_trim_multiple').prop('disabled', false).closest('p').show();
+        } else {
+          $('#custom_field_acl_trim_multiple').prop('disabled', true).closest('p').hide();
+        }
+      });
+    });
+  </script>
+<% end %>

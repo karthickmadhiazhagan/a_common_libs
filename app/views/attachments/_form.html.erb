@@ -1,0 +1,33 @@
+<%= rmp_render_previous('attachments/form', __FILE__, true, local_assigns || {}) %>
+
+<script type="text/javascript" charset="utf-8">
+  if (window['handleFileDropEvent']) {
+
+    var originalHandleFileDropEvent = handleFileDropEvent;
+    handleFileDropEvent = function(e) {
+
+      $(this).removeClass('fileover');
+      blockEventPropagation(e);
+
+      if ($.inArray('Files', e.dataTransfer.types) > -1) {
+        handleFileDropEvent.target = e.target;
+        var $target = $(e.target);
+        if (!$target.is('input:file')) {
+          if ($target.hasClass('attachments_form') || $target.closest('.attachments_form').length > 0) {
+            $target = $target.find('.filedrop:first');
+          } else {
+            $target = $(this).find('.filedrop:last');
+          }
+        }
+        if ($target.length === 0) {
+          $target = $(this).find('.filedrop:last');
+        }
+        uploadAndAttachFiles(e.dataTransfer.files, $target);
+      }
+    };
+    $(document).ready(function() {
+      $('form div.box.filedroplistner').off('dragover').off('dragleave').off('drop').removeClass('filedroplistner');
+      setupFileDrop();
+    });
+  }
+</script>

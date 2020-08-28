@@ -1,0 +1,5 @@
+<div class="autoscroll" style="max-height: 600px">
+  <% @cf.custom_field.format.formatted_custom_value(self, @cf, false).each do |f| %>
+    <div class='lb-trimmed-item'><%= format_object(f, true) %></div>
+  <% end %>
+</div>

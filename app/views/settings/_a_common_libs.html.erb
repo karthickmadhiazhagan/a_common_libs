@@ -1,0 +1,58 @@
+<div style="padding: 10px;">
+<table class="plugin_settings" style="width: 100%;">
+  <tbody>
+    <tr class="rmp-settings-group">
+      <td><%= l(:including_external_libraries).html_safe %></td>
+    </tr>
+
+
+    <% %w(enable_select2_lib enable_select2_extensions enable_jqplot_lib enable_bootstrap_lib enable_javascript_patches enable_modal_windows enable_font_awesome enable_periodpicker enable_ajax_counters).each do |st| %>
+      <tr>
+        <td class="acl-expander">
+          <label>
+            <%= hidden_field_tag "settings[#{st}]", false %>
+            <%= check_box_tag "settings[#{st}]", true, Acl::Settings[st] %>
+            &mdash; <%= l("settings_#{st}").html_safe %>
+          </label>
+
+          <% used_by = []
+             Acl::Settings.used_by(st).each do |plugin_id|
+               if (plugin = Redmine::Plugin.registered_plugins[plugin_id]).present?
+                used_by << [plugin_id, plugin.name]
+               end
+             end
+             used_by = used_by.sort { |x, y| x[1] <=> y[1] }
+          %>
+
+          <% if used_by.present? %>
+            <a href="#" class="acl-expander-handler acl-after no_line in_link" style="padding-left: 5px; font-size: 0.8em;"><span><%= l(:settings_used_by_plugin_list) %></span> </a>
+            <ul class="acl-expander-data acl-setting-used">
+              <% used_by.each do |it| %>
+                <li><%= link_to it[1], { controller: :settings, action: :plugin, id: it[0] } %></li>
+              <% end %>
+            </ul>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+
+    <tr class="rmp-settings-group">
+      <td><%= l(:label_other_settings).html_safe %></td>
+    </tr>
+    <tr class="not_disabled">
+      <td>
+        <label>
+          <%= hidden_field_tag 'settings[enable_ajax_edit_form]', false %>
+          <%= check_box_tag 'settings[enable_ajax_edit_form]', true, Acl::Settings['enable_ajax_edit_form'] %>
+          &mdash; <%= l(:label_enable_ajax_edit_form).html_safe %>
+        </label>
+      </td>
+    </tr>
+    <tr>
+      <td id="settings_save_button">
+        <%= render file: File.join(File.dirname(__FILE__), '_rmplus_logo.html.erb') %>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>

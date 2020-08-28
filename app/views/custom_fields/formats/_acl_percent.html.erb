@@ -1,0 +1,14 @@
+<p>
+  <label for="custom_field_min_value"><%= l(:field_custom_field_min_value) %> - <%= l(:field_custom_field_max_value) %></label>
+  <%= f.text_field :min_value, size: 6, no_label: true %> -
+  <%= f.text_field :max_value, size: 6, no_label: true %>
+</p>
+
+<%= render partial: 'custom_fields/formats/numeric', locals: { f: f, custom_field: custom_field } %>
+
+<% if Redmine::Plugin.installed?(:usability) %>
+  <p>
+    <label for="custom_field_edit_tag_style"><%= l(:label_display) %></label>
+    <%= us_available_progress_styles :custom_field, :edit_tag_style, custom_field.edit_tag_style, allow_blank: true %>
+  </p>
+<% end %>

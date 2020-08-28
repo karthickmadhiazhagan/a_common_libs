@@ -1,0 +1,86 @@
+# English strings go here for Rails i18n
+ru:
+  settings_enable_select2_lib: "Select 2"
+  settings_enable_select2_extensions: 'Select2 Extensions'
+  settings_enable_jqplot_lib: "jqPlot"
+  settings_enable_bootstrap_lib: "Twitter Bootstrap"
+  including_external_libraries: "Включение сторонних библиотек"
+  settings_enable_javascript_patches: "Включить javascript патчи"
+  settings_enable_modal_windows: "Разрешить модальные окна"
+  settings_enable_jquery_cookies: "Включить плагин jQuery Cookie"
+  settings_enable_font_awesome: "Включить шрифтовые иконки - <a href='http://fortawesome.github.io/Font-Awesome/' target='_blank'>&laquo;FontAwesome&raquo;</a>"
+  settings_enable_ajax_counters: 'Включить асинхронные счетчики'
+  settings_used_by_plugin_list: 'Используется'
+
+  ajax_placeholder: "Введите данные"
+  combobox_error: "Ошибка сервера, попробуйте позже"
+  combobox_404: "Ошибка 404, URL не найден"
+  field_favourite_project: "Избранный проект"
+
+  label_rmplus_logo: "Данный плагин разработан командой «RM+». Вы всегда можете найти другие наши плагины на сайте"
+
+  lib_clear: "Очистить"
+  lib_close: "Закрыть"
+  date:
+    standalone_abbr_month_names: [~, янв., февр., март, апр., май, июнь, июль, авг., сент., окт., нояб., дек.]
+    abbr_month_names_rmp: [~, Янв, Фев, Мар, Апр, Май, Июн, Июл, Авг, Сен, Окт, Ноя, Дек]
+    quarter_names: ['I кв.','II кв.','III кв.','IV кв.']
+
+  label_cm_menu_custom_menu_us_favourite_proj_name: 'Избранный проект (текст)'
+  label_cm_menu_custom_menu_us_favourite_proj_link: 'Избранный проект (ссылка)'
+  label_cm_menu_custom_menu_us_favourite_proj_issues: 'Задачи'
+  label_cm_menu_custom_menu_us_favourite_proj_wiki: 'Wiki'
+  label_cm_menu_custom_menu_us_new_issue: 'Создать задачу (подменю)'
+  plugin_not_support: "Поддержка плагина для данного домена закончилась, вы больше не будете получать обновления. Продлить поддержку можно по ссылке <a href='http://rmplus.pro/redmine/plugins/%{plugin_code}'>%{plugin_name}</a>."
+  support_expire_date: "Поддержка плагина для данного домена доступна до %{expire_date}."
+  acl_footer_text: '<a href="http://rmplus.pro/sistema_upravlenija_organizaciej">«RM+»</a> — сделана с умом, заботой о людях и любовью к профессии.'
+  footer_tagline: '<a href="http://rmplus.pro/sistema_upravlenija_organizaciej">«RM+»</a> — cделана с умом, заботой о людях и любовью к профессии.'
+  settings_enable_periodpicker: 'Включить плагин PeriodPicker'
+  label_acl_date_time: 'Дата и время'
+  label_acl_date_month: 'Месяц'
+  label_acl_upload_icons_header: 'Выбор иконок для загрузки'
+  label_acl_upload_icons: 'Загрузка иконок'
+  label_acl_upload_icons_submit: 'Загрузить'
+  label_acl_upload_icons_no_selected_icons: 'Не выбраны иконки'
+  label_acl_upload_icons_max_filesize_exceed: 'Превышен максимальный размер файла (%{max_filesize})'
+  label_acl_upload_icons_unknown_file_type: 'Файл имеет неизвестный формат'
+  label_acl_upload_icons_resolution_exceed: 'Размер изображения превышен (%{resolution})'
+  label_acl_upload_icons_unsupported_browser: 'Используемый вами браузер не поддерживает Files API в полной мере, необходимой для загрузки изображений.'
+  label_acl_upload_icons_select: 'Иконки'
+  label_acl_upload_icons_success: 'Иконки успешно загружены'
+  label_acl_upload_icons_file_exists: '%{filename} - файл существует'
+  label_acl_upload_icons_file_save_error: 'Произошла ошибка записи файла %{filename} на диск'
+  acl_button_css: "Иконка"
+  field_ajaxable: 'Асинхронная подгрузка значений'
+  button_close_window: "Закрыть"
+  label_acl_mobile_version: 'Мобильная версия сайта'
+  label_acl_desktop_version: 'Полная версия сайта'
+  api_log_for_plugins_errors: 'Ошибки API'
+  label_cm_menu_custom_menu_api_log_for_plugins: 'Ошибки API'
+  acl_label_plugin_singular: 'Плагин'
+  acl_label_error_code: 'Код ошибки'
+  label_acl_percent: 'Процент (%)'
+  error_acl_min_value_greater_then_max_value: 'Минимальное значение не должно быть больше максимального'
+  field_custom_field_min_value: 'Минимальное значение'
+  field_custom_field_max_value: 'Максимальное значение'
+  field_acl_trim_multiple: 'Ограничивать вывод'
+  label_acl_custom_field_all_trimmed: 'Все (%{count})'
+  label_acl_refresh_ajax_counters: "Обновить счетчики"
+  label_cm_menu_custom_menu_acl_update_counters: 'Обновить счетчики'
+  acl_dismissed_users: 'Уволенные сотрудники'
+
+  label_acl_macro_pre: 'pre'
+  label_acl_macro_now: 'Текущие дата и время'
+  label_acl_macro_date_now: 'Текущая дата'
+  label_acl_macro_current_user: 'Текущий пользователь'
+  label_acl_macro_current_user_lastname: 'Фамилия текущего пользователя'
+  label_acl_macro_current_user_firstname: 'Имя текущего пользователя'
+  label_acl_macro_issue_name: 'Название задачи'
+  label_acl_macro_issue_link: 'Ссылка на задачу'
+  label_acl_macro_issue_project_identifier: 'Уникальный идентификатор проекта'
+  us_of_issue: "Задачу"
+  label_cm_menu_custom_menu_us_favourite_proj_new_issue: 'Новая задача'
+  label_other_settings: "Прочие настройки"
+  label_enable_ajax_edit_form: "Включить ajax загрузку формы редактирования задачи"
+  label_acl_attribute_of_user: '%{object_name} сотрудника %{name}'
+  label_acl_macros_list: 'Список макросов'

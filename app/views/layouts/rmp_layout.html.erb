@@ -1,0 +1,47 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang=<%= current_language %>>
+  <% @rmp_layout = true %>
+  <head>
+    <meta charset="utf-8" />
+    <title><%= rmp_html_title %></title>
+    <meta name="description" content=<%= Redmine::Info.app_name %> />
+    <%= csrf_meta_tag %>
+    <%= favicon %>
+    <%= stylesheet_link_tag 'jquery/jquery-ui-1.11.0', 'application', :media => 'all' %>
+    <%= javascript_heads %>
+    <%= call_hook :view_layouts_base_html_head %>
+    <%= stylesheet_link_tag 'rmplus', plugin: :a_common_libs %>
+    <%= yield :header_tags %>
+  </head>
+  <body>
+    <div class="rmp-centered-window">
+      <div class="rmp-background">
+        <% header = yield :header %>
+        <% if header.present? %>
+          <div class="rmp-header">
+            <%= header %>
+          </div>
+        <% end %>
+        <% place = yield :place %>
+        <% if place.present? %>
+          <%= place %>
+        <% end %>
+        <div class="rmp-rmp-place"></div>
+        <div class="rmp-line-grad"></div>
+        <div class="rmp-wrapper">
+          <%= yield %>
+        </div>
+        <div class="rmp-back top-left"></div>
+        <div class="rmp-back top-right"></div>
+        <div class="rmp-back bottom-left"></div>
+        <div class="rmp-back bottom-right"></div>
+
+        <div class="rmp-footer">
+          <p>
+            <%= l(:acl_footer_text).html_safe %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

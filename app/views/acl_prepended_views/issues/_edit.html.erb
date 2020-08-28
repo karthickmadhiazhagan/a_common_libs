@@ -1,0 +1,10 @@
+<% if Acl::Settings['enable_ajax_edit_form'] %>
+  <div id="acl-issue-edit-form">
+    <div class="big_loader form_loader"></div>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+    RMPlus.ACL.load_issue_edit_form(<%= @issue.id %>, <%= @heads_for_wiki_formatter_included ? 'true' : 'false' %>, <%= @calendar_headers_tags_included ? 'true' : 'false' %>);
+  </script>
+<% else %>
+  <%= rmp_render_previous('issues/edit', __FILE__, true) %>
+<% end  %>

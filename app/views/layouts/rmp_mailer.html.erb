@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+</head>
+
+<body>
+<%= yield :header %>
+<div style="padding: 20px; background-color:#F8F8F8; margin: 0;">
+  <table style="margin: 0 auto; max-width:700px; width:100%;">
+    <tr>
+      <td>
+        <div style="padding:0 20px; box-sizing: border-box; position: relative; overflow: hidden; margin-bottom: 30px;">
+          <a href="<%= @custom_logo ? '#' : "http://www.rmplus.pro/" %>" target="_blank" style="color:#0077cc !important;text-decoration:underline;" >
+            <%= image_tag(attachments['logo.png'].url, alt: "Logo", width: 150) if attachments['logo.png'].present? %>
+          </a>
+          <% unless @custom_header %>
+            <div style="float:right;padding-top: 5px; color: #A0A0A0">
+              <% project = @issue.try(:project) || @document.try(:project) || @attachments.try(:first).try(:container).try(:project) || @news.try(:project) || @message.try(:board).try(:project) || @wiki_content.try(:project) %>
+              <% if project.present? %>
+                <%= link_to project.name, { controller: :projects, action: :show, id: project.identifier, only_path: false }, style: 'color: #A0A0A0' %>
+                |
+              <% end %>
+              <%= link_to l(:label_my_account), { controller: :my, action: :account, only_path: false }, style: 'color: #A0A0A0' %>
+            </div>
+          <% end %>
+        </div>
+        <div style="border: 1px solid #E5E5E5; border-top: none; background-color: #fff;font-family: Arial, sans-serif; font-size: 10pt;">
+          <div style="padding-top: 5px; border-radius: 4px 4px 0 0; background-image: -webkit-linear-gradient(right, #fd0003, #980094); background-image: -moz-linear-gradient(right, #fd0003, #980094); background-image: -o-linear-gradient(right, #fd0003, #980094); background-image: linear-gradient(to left, #fd0003, #980094);"></div>
+          <div>
+            <div style="padding:20px">
+              <%= rmp_mailer_header %>
+
+              <% if Setting.emails_header.present? && !@custom_header %>
+                <div style="color:#000;font-weight:normal;font-family: 'Arial', serif; font-size: 12px;">
+                  <%= Redmine::WikiFormatting.to_html(Setting.text_formatting, Setting.emails_header).html_safe.gsub('<a ', '<a style="color:#0298CD"').html_safe %>
+                </div>
+              <% end -%>
+
+              <div style="border-bottom: 1px solid #E5E5E5;"></div>
+            </div>
+            <%= yield %>
+          </div>
+        </div>
+        <% if Setting.emails_footer.present? && !@no_footer %>
+          <div style="border-radius: 0 0 4px 4px;border: 1px solid #E5E5E5;border-top: none;background-color: #F7F7F7;padding: 15px; text-align: center; color:#9B9B9B;font-family: 'Arial', serif; font-size: 12px;">
+            <%= Redmine::WikiFormatting.to_html(Setting.text_formatting, Setting.emails_footer).html_safe.gsub('<a ', '<a style="color:#0298CD"').html_safe %>
+          </div>
+        <% end %>
+
+        <div style="margin-top: 10px; color: #818181; text-align: center;font-family: 'Arial', serif; font-size: 10px;">
+          <%= l(:acl_footer_text).html_safe.gsub('<a ', '<a style="color:#0298CD"').html_safe %>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+<%= yield :footer %>
+</body>
+</html>

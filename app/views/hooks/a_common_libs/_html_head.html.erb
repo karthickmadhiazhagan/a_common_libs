@@ -1,0 +1,229 @@
+<%= stylesheet_link_tag :hint, plugin: :a_common_libs %>
+<%= stylesheet_link_tag 'a_common_styles.css', plugin: :a_common_libs, media: 'all' %>
+<%= stylesheet_link_tag 'rmp_settings.css', plugin: :a_common_libs %>
+<%= javascript_include_tag 'a_common_libs.js', plugin: :a_common_libs %>
+<%= javascript_include_tag 'utils.js', plugin: :a_common_libs %>
+<%= javascript_include_tag 'jquery.sortable_extend.js', plugin: :a_common_libs %>
+<%= javascript_include_tag 'jquery.serialize-hash.js', plugin: :a_common_libs %>
+
+<% if Acl::Settings['enable_font_awesome'] %>
+  <%= stylesheet_link_tag 'font-awesome.css', plugin: :a_common_libs, media: 'all' %>
+<% end %>
+
+<% if Acl::Settings['enable_bootstrap_lib'] %>
+  <%= stylesheet_link_tag 'bootstrap.min.css', plugin: :a_common_libs %>
+  <%= javascript_include_tag 'bootstrap.min.js', plugin: :a_common_libs %>
+  <%= javascript_include_tag 'bootstrap.modal.ext.js', plugin: :a_common_libs %>
+<% end %>
+
+<% if controller_name == 'settings' %>
+  <%= javascript_include_tag 'rmp_settings.js', plugin: :a_common_libs %>
+<% end %>
+
+
+<% if Acl::Settings['enable_jqplot_lib'] %>
+  <%= javascript_include_tag 'jqplot/jquery.jqplot.min.js', :plugin => :a_common_libs %>
+  <%= stylesheet_link_tag 'jquery.jqplot.min.css', :plugin => :a_common_libs %>
+  <%= javascript_include_tag 'jqplot/jqplot.highlighter.min.js', :plugin => :a_common_libs %>
+  <%= javascript_include_tag 'jqplot/jqplot.cursor.min.js', :plugin => :a_common_libs %>
+  <%= javascript_include_tag 'jqplot/jqplot.enhancedLegendRenderer.min.js', :plugin => :a_common_libs %>
+  <%= javascript_include_tag 'jqplot/jqplot.canvasOverlay.min.js', :plugin => :a_common_libs %>
+  <%= javascript_include_tag 'jqplot/jqplot.canvasTextRenderer.min.js', :plugin => :a_common_libs %>
+  <%= javascript_include_tag 'jqplot/jqplot.canvasAxisLabelRenderer.min.js', :plugin => :a_common_libs %>
+  <%= javascript_include_tag 'jqplot/jqplot.dateAxisRenderer.min.js', :plugin => :a_common_libs %>
+  <%= javascript_include_tag 'jqplot/jqplot.canvasAxisTickRenderer.min.js', :plugin => :a_common_libs %>
+<% end %>
+
+<% if Acl::Settings['enable_select2_lib'] %>
+  <%= javascript_include_tag 'select2/select2.js', plugin: :a_common_libs %>
+  <%= stylesheet_link_tag :select2, plugin: :a_common_libs %>
+<% end %>
+
+<% if Acl::Settings['enable_periodpicker'] %>
+  <%= javascript_include_tag 'moment.min.js', :plugin => :a_common_libs %>
+<% end %>
+
+<% if Acl::Settings['enable_modal_windows'] %>
+  <%= javascript_include_tag :modal_windows, :plugin => :a_common_libs %>
+  <%= stylesheet_link_tag :modal_windows, :plugin => :a_common_libs %>
+<% end %>
+
+<% if Acl::Settings['enable_periodpicker'] %>
+  <%= javascript_include_tag 'periodpicker/jquery.periodpicker.min.js', :plugin => :a_common_libs %>
+  <%= javascript_include_tag 'periodpicker/jquery.mousewheel.min.js', :plugin => :a_common_libs %>
+  <%= javascript_include_tag 'periodpicker/jquery.timepicker.min.js', :plugin => :a_common_libs %>
+  <%= javascript_include_tag 'periodpicker/periodpicker_extensions.js', :plugin => :a_common_libs %>
+  <%= stylesheet_link_tag 'jquery.periodpicker.min.css', :plugin => :a_common_libs %>
+  <%= stylesheet_link_tag 'jquery.timepicker.min.css', :plugin => :a_common_libs %>
+<% end %>
+
+<script type="text/javascript">
+  RMPlus.Utils = (function (my) {
+    var my = my || {};
+
+    my.user_locale = '<%= I18n.locale %>';
+    my.combobox_placeholder = '<%= l(:ajax_placeholder) %>';
+    my.combobox_404 = '<%= l(:combobox_404) %>';
+    my.combobox_error = '<%= l(:combobox_error) %>';
+    my.relative_url_root = '<%= Redmine::Utils.relative_url_root %>';
+    my.redmine_version = '<%= Redmine::VERSION.to_s %>';
+    my.mobile = <%= acl_mobile_device? ? true : false %>
+
+    my.locale = { clearButton: '<%= I18n.t(:lib_clear) %>',
+                  closeButton: '<%= I18n.t(:lib_close) %>',
+                  monthNames: <%= I18n.t('date.abbr_month_names_rmp')[1..12].to_json.html_safe %>,
+                  quarterNames: <%= I18n.t('date.quarter_names')[0..3].to_json.html_safe %>
+                };
+
+    return my;
+  })(RMPlus.Utils || {});
+  RMPlus.ACL.enable_ajax_edit_form = "<%= Acl::Settings['enable_ajax_edit_form'] %>";
+</script>
+
+<% if controller_name == 'admin' && action_name == 'plugins' %>
+  <%
+  plugin_with_host = {}
+  Redmine::Plugin.all.each do |plugin|
+    name_clazz = plugin.id.to_s+'_setup'
+    clazz = name_clazz.camelize.safe_constantize
+    if clazz
+      allowed_hosts = clazz.allowed_hosts
+      if allowed_hosts.is_a?(Hash) && allowed_hosts[request.host]
+        text = Time.now.to_date > allowed_hosts[request.host].to_date ? ('<b>' + l(:plugin_not_support, plugin_code: plugin.id, plugin_name: plugin.name)+'</b>').html_safe : ('<b>' +l(:support_expire_date, expire_date: format_date(allowed_hosts[request.host].to_date))+'</b>').html_safe
+        plugin_with_host.merge!(plugin.id.to_s => text)
+      end
+    end
+
+  end
+  %>
+
+  <% unless plugin_with_host.blank? %>
+    <script>
+      $(document).ready(function(){
+        <% plugin_with_host.each do |k,v| %>
+          $('#plugin-<%= escape_javascript k %> span.name').after('<span><%= escape_javascript v %></span>');
+        <% end %>
+      });
+    </script>
+  <% end %>
+<% end %>
+
+<% if current_theme.present? && (current_theme.dir == 'redmine_alex_skin' || current_theme.dir == 'redmine_uniqom_skin') %>
+  <script>
+    $(document).ready(function(){
+      $('#footer').find('.bgl .bgr ').html('<%= l(:footer_tagline).html_safe %>');
+    });
+  </script>
+<% end %>
+<% if acl_mobile_device? || session[:mobile_override] == '0' %>
+    <script>
+      $(document).ready(function(){
+        <% if session[:mobile_override] == '0' %>
+          $('#footer').append('<a style="float:right" href="?mobile=1"><%= l(:label_acl_mobile_version) %></a>');
+        <% else %>
+          $('#footer').append('<a style="float:right" href="?mobile=0"><%= l(:label_acl_desktop_version) %></a>');
+        <% end %>
+      });
+    </script>
+<% end %>
+
+<% if Acl::Settings['enable_periodpicker'] %>
+    <script type="text/javascript" charset="utf-8">
+      var periodpickerOptions={
+        hideAfterSelect: true,
+        formatDate: 'YYYY-MM-DD',
+        formatDateTime: 'YYYY-MM-DD',
+        norange: true,
+        animation: false,
+        lang: "<%= l('jquery.locale', :default => current_language.to_s) %>",
+        i18n: {
+          ru: {
+            'Clear': 'Очистить'
+          }
+        },
+        yearsLine: false,
+        clearButtonInButton: true
+      };
+
+      var datetimepickerOptions={
+        hideAfterSelect: true,
+        norange: true,
+        animation: false,
+        formatDateTime: 'YYYY-MM-DD HH:mm',
+        formatDecoreDateTimeWithYear: 'YYYY-MM-DD HH:mm',
+        timepicker: true,
+        timepickerOptions: {
+          hours: true,
+          minutes: true,
+          seconds: false,
+          ampm: false,
+          twelveHoursFormat: false
+        },
+        lang: "<%= l('jquery.locale', :default => current_language.to_s) %>",
+        i18n: {
+          ru: {
+            'Clear': 'Очистить'
+          }
+        },
+        yearsLine: false,
+        clearButtonInButton: true
+      };
+
+      var monthperiodpickerOptions = $.extend({}, periodpickerOptions, {
+        hideAfterSelect: true,
+        formatDateTime: 'YYYY-MM',
+        formatDate: 'YYYY-MM',
+        formatDecoreDate: 'MMMM',
+        formatDecoreDateWithoutMonth: 'MMMM',
+        formatDecoreDateWithYear: 'MMMM YYYY'
+      });
+
+      var periodpickerOptionsRange={
+        hideAfterSelect: false,
+        formatDate: 'YYYY-MM-DD',
+        formatDateTime: 'YYYY-MM-DD',
+        norange: false,
+        animation: false,
+        lang: "<%= l('jquery.locale', :default => current_language.to_s) %>",
+        i18n: {
+          ru: {
+            'Clear': 'Очистить'
+          }
+        },
+        clearButtonInButton: true
+      };
+
+      if(RMPlus.Utils.mobile){
+        $.extend(periodpickerOptions, {cells: [1, 1]});
+        $.extend(datetimepickerOptions, {cells: [1, 1]});
+        $.extend(periodpickerOptionsRange, {cells: [1, 1]});
+      }
+
+    </script>
+<% end %>
+<%= Acl::Utils::CssBtnIconsUtil.include_generated_css %>
+
+<% if Acl::Settings['enable_ajax_counters'] %>
+  <%= javascript_include_tag 'ajax_counters.js', plugin: :a_common_libs %>
+
+  <%
+    counters_info = {}
+    # For reduce session data length:
+    # c - counter, t - time, p - refresh period
+    cur_time = Time.now.utc
+    ss = session.respond_to?(:to_hash) ? session.to_hash : session
+    ss.each do |k,v|
+      if v.is_a?(Hash) && v.has_key?(:c) && v.has_key?(:t) && v.has_key?(:p)
+        if v[:t] + v[:p].seconds < cur_time # expired
+          session[k] = nil # drop data in session storage to free the space
+        else
+          counters_info[k] = v[:c]
+        end
+      end
+    end
+  %>
+
+  <script type="text/javascript">
+    RMPlus.ACL.initialize(<%= counters_info.to_json.html_safe %>);
+  </script>
+<% end %>

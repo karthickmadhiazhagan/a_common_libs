@@ -1,0 +1,86 @@
+# English strings go here for Rails i18n
+en:
+  settings_enable_select2_lib: "Select 2"
+  settings_enable_select2_extensions: 'Select2 Extensions'
+  settings_enable_jqplot_lib: "jqPlot"
+  settings_enable_bootstrap_lib: "Twitter Bootstrap"
+  including_external_libraries: "The inclusion of third-party libraries"
+  settings_enable_javascript_patches: "Enable patches to core redmine javascript"
+  settings_enable_modal_windows: "Enable tiny modals"
+  settings_enable_jquery_cookies: "Enable Jquery Cookie plugin"
+  settings_enable_font_awesome: "Enable font icons - <a href='http://fortawesome.github.io/Font-Awesome/' target='_blank'>&laquo;FontAwesome&raquo;</a>"
+  settings_enable_ajax_counters: 'Enable ajax for counters'
+  settings_used_by_plugin_list: '~Используется'
+  ajax_placeholder: "Please, enter or select data"
+  combobox_error: "Server error, please try again later"
+  combobox_404: "404 error, URL not found"
+  field_favourite_project: "Favourite project"
+
+  label_rmplus_logo: "This plugin is developed by \"RM+\" team. You can check out all of our plugins on"
+
+  lib_clear: "Clear"
+  lib_close: "Close"
+  date:
+    standalone_abbr_month_names: [~, jan, feb, mar, apr, may, jun, jul, aug, sep, oct, nov, dec]
+    abbr_month_names_rmp: [~, Jan, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+    quarter_names: ['I qr.','II qr.','III qr.','IV qr.']
+
+  label_cm_menu_custom_menu_us_favourite_proj_name: 'Favourite project text'
+  label_cm_menu_custom_menu_us_favourite_proj_link: 'Favourite project link'
+  label_cm_menu_custom_menu_us_favourite_proj_issues: 'Issues'
+  label_cm_menu_custom_menu_us_favourite_proj_new_issue: 'New issue'
+  label_cm_menu_custom_menu_us_favourite_proj_wiki: 'Wiki'
+  label_cm_menu_custom_menu_us_favourite_proj_dmsf: 'Documents'
+  label_cm_menu_custom_menu_us_new_issue: 'New issue (submenu)'
+  plugin_not_support: "Support of plugin for this domain is over, you will no longer receive updates. You can renew plugin support via the link <a href='http://rmplus.pro/redmine/plugins/%{plugin_code}'>%{plugin_name}</a>."
+  support_expire_date: "Support of plugin for the domain is available up to %{expire_date}."
+  acl_footer_text: '<a href="http://rmplus.pro/sistema_upravlenija_organizaciej">«RM+»</a> — made with the mind, concern for people and love to the profession.'
+  footer_tagline: '<a href="http://rmplus.pro/sistema_upravlenija_organizaciej">«RM+»</a> — made with the mind, concern for people and love to the profession.'
+  settings_enable_periodpicker: 'Enable PeriodPicker plugin'
+  label_acl_date_time: 'Date time'
+  label_acl_date_month: 'Month'
+  label_acl_upload_icons_header: 'Selecting icons to upload'
+  label_acl_upload_icons: 'Icons upload'
+  label_acl_upload_icons_submit: 'Upload'
+  label_acl_upload_icons_no_selected_icons: 'Icons are not selected'
+  label_acl_upload_icons_max_filesize_exceed: 'Exceeded the maximum file size (%{max_filesize})'
+  label_acl_upload_icons_unknown_file_type: 'The file has an unknown format'
+  label_acl_upload_icons_resolution_exceed: 'The image size is exceeded (%{resolution})'
+  label_acl_upload_icons_unsupported_browser: 'Your browser does not support Files API fully required to upload images.'
+  label_acl_upload_icons_select: 'Icons'
+  label_acl_upload_icons_success: 'Icons successfully loaded'
+  label_acl_upload_icons_file_exists: '%{filename} - file exists'
+  label_acl_upload_icons_file_save_error: 'There was an error writing the file %{filename} on disk'
+  acl_button_css: "Icon"
+  field_ajaxable: 'Asynchronous loading of values'
+  button_close_window: "Close"
+  label_acl_mobile_version: 'Mobile version'
+  label_acl_desktop_version: 'Desktop version'
+  api_log_for_plugins_errors: 'API errors'
+  label_cm_menu_custom_menu_api_log_for_plugins: 'API errors'
+  acl_label_plugin_singular: 'Plugin'
+  acl_label_error_code: 'Error code'
+  label_acl_percent: 'Percent (%)'
+  error_acl_min_value_greater_then_max_value: 'Minimum value can not exceed maximum value'
+  field_custom_field_min_value: 'Minimum value'
+  field_custom_field_max_value: 'Maximum value'
+  field_acl_trim_multiple: 'Limit the output'
+  label_acl_custom_field_all_trimmed: 'All (%{count})'
+  label_acl_refresh_ajax_counters: "Refresh counters"
+  label_cm_menu_custom_menu_acl_update_counters: 'Refresh counters'
+  acl_dismissed_users: 'Dismissed employees'
+
+  label_acl_macro_pre: 'pre'
+  label_acl_macro_now: 'Current date and time'
+  label_acl_macro_date_now: 'Current date'
+  label_acl_macro_current_user: 'Current user'
+  label_acl_macro_current_user_lastname: 'Lastname of current user'
+  label_acl_macro_current_user_firstname: 'Name of current user'
+  label_acl_macro_issue_name: 'Issue subject'
+  label_acl_macro_issue_link: 'Link to issue'
+  label_acl_macro_issue_project_identifier: 'Unique identifier of project'
+  us_of_issue: "Issue"
+  label_other_settings: "Other setting"
+  label_enable_ajax_edit_form: "~Включить ajax загрузку формы редактирования задачи"
+  label_acl_attribute_of_user: '~%{object_name} сотрудника %{name}'
+  label_acl_macros_list: 'Macros list'

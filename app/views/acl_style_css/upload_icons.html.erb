@@ -1,0 +1,36 @@
+<div class="modal-header">
+  <button type="button" class="lb_close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3><%= l(:label_acl_upload_icons_header) %></h3>
+</div>
+<div class="modal-body">
+  <%= form_tag %>
+  <div class="nodata I" id="acl-label-unsupported-browser"><%= l(:label_acl_upload_icons_unsupported_browser) %> %></div>
+  <div id="acl-upload-icons">
+    <%= file_field_tag 'css_icons[]', accept: "image/#{Acl::Utils::CssBtnIconsUtil.options[:available_ext].join(',image/')}",
+                       multiple: true,
+                       id: 'acl-icon-files',
+                       class: 'I',
+                       data: {
+                               upload_url: url_for(controller: :acl_style_css, action: :upload_icons),
+                               no_files: l(:label_acl_upload_icons_no_selected_icons),
+                               not_available_ext: l(:label_acl_upload_icons_unknown_file_type),
+                               filesize: Acl::Utils::CssBtnIconsUtil.options[:max_size].to_i,
+                               filesize_exceed: l(:label_acl_upload_icons_max_filesize_exceed, max_filesize: number_to_human_size(Acl::Utils::CssBtnIconsUtil.options[:max_size].to_f / 1024, precision: 2)),
+                               resolution: "#{Acl::Utils::CssBtnIconsUtil.options[:max_width]}x#{Acl::Utils::CssBtnIconsUtil.options[:max_height]}",
+                               resolution_exceed: l(:label_acl_upload_icons_resolution_exceed, resolution: "#{Acl::Utils::CssBtnIconsUtil.options[:max_width]}x#{Acl::Utils::CssBtnIconsUtil.options[:max_height]}"),
+                               success: l(:label_acl_upload_icons_success)
+                       } %>
+    <%= button_tag l(:label_acl_upload_icons_select), id: 'acl-icons-select' %>
+  </div>
+</div>
+<div class="modal-footer">
+  <%= submit_tag(l(:label_acl_upload_icons_submit), disabled: true, id: 'acl-icons-submit') %>
+  <button data-dismiss="modal" aria-hidden="true" style="vertical-align: middle;"><%= l(:button_close_window) %></button>
+</div>
+
+<script type="text/javascript">
+    if (!window.File || !window.FileReader || !window.FileList || !window.Blob) {
+        $('#acl-upload-icons').remove();
+        $('#acl-label-unsupported-browser').removeClass('I');
+    }
+</script>

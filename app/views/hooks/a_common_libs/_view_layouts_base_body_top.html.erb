@@ -1,0 +1,13 @@
+<% if Acl::Settings['enable_select2_lib'] || Acl::Settings['enable_select2_extensions'] %>
+  <% if I18n.locale == :ru %>
+    <%= javascript_include_tag "select2/i18n/#{I18n.locale}", plugin: :a_common_libs %>
+  <% end %>
+<% end %>
+<% if Acl::Settings['enable_select2_extensions'] %>
+  <%= stylesheet_link_tag :select2_extentions, plugin: :a_common_libs %>
+  <%= javascript_include_tag 'select2/select2_extentions', plugin: :a_common_libs %>
+<% end %>
+
+<% if Acl::Settings['enable_javascript_patches'] %>
+  <%= javascript_include_tag 'patches.js', :plugin => :a_common_libs %>
+<% end %>
