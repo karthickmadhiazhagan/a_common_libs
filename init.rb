@@ -68,6 +68,10 @@ Rails.application.config.after_initialize do
       ApplicationHelper.send(:include, Acl::ApplicationHelperPatch)
     end
 
+    unless AvatarsHelper.included_modules.include?(Acl::AvatarsHelperPatch)
+      AvatarsHelper.send(:include, Acl::AvatarsHelperPatch)
+    end
+
     require 'acl/redmine/query_custom_field_association_column'
   end
 
