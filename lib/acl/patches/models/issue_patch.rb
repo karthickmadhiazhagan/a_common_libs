@@ -20,8 +20,8 @@ module Acl::Patches::Models
     end
 
     module ClassMethods
-      def allowed_target_projects_with_acl(user=User.current, current_project=nil)
-        sc = allowed_target_projects_without_acl(user, current_project)
+      def allowed_target_projects_with_acl(user=User.current, current_project=nil, scope=nil)
+        sc = allowed_target_projects_without_acl(user, current_project, scope)
         fp = user.favourite_project
         if fp.present?
           sc.order(Arel.sql("case when #{Project.table_name}.id = #{fp.id} then 0 else 1 end"))
